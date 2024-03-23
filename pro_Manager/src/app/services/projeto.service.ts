@@ -13,7 +13,10 @@ export class ProjetoService {
 
   getProjeto() : Observable<Projeto[]>{
     return this._httpClient.get<Projeto[]>(this.url);
+  }
 
+  setProjeto(novoProjeto: Projeto): Observable<Projeto> {
+    return this._httpClient.post<Projeto>(this.url, novoProjeto);
   }
 
 }
