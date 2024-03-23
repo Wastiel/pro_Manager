@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Adicionar Projeto</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Nome do Projeto" [(ngModel)]="nomeProjeto">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="adicionarProjeto()">Adicionar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

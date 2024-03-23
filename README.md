@@ -1,2 +1,2 @@
 # pro_Manager
-Gerenciamento de Projetos - Atividade avaliativa mentoria Angular
+Gerenciador de projetos e atividades para um trabalho de mentoria angular
