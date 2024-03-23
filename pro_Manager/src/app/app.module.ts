@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +13,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ModalComponent } from './modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuProjetosComponent,
-    ModalComponent
+    MenuProjetosComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,10 @@ import { ModalComponent } from './modal/modal.component';
     MatIconModule,
     FormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule,    
+    BrowserAnimationsModule,
+    ReactiveFormsModule
     
   ],
   providers: [],
