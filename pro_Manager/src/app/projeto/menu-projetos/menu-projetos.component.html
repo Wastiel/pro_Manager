@@ -18,22 +18,31 @@
   </mat-card>
   
 
-  <ng-template #modalContent let-modal>
+  <ng-template #modalContent let-modal >
     <h2 mat-dialog-title>Adicionar Projeto</h2>
-    <mat-dialog-content>
+    <mat-dialog-content >      
       <form [formGroup]="form" (ngSubmit)="adicionarProjeto()">
-        <mat-form-field appearance="outline">
+        <p>
+        <mat-form-field appearance="outline" style="width: 100%;">
           <mat-label>Nome do Projeto</mat-label>
-          <input matInput placeholder="Digite o nome do projeto" formControlName="nome" required>
-          <mat-error *ngIf="form.get('nome')?.invalid">O campo é obrigatório</mat-error>
+          <input matInput 
+                 placeholder="Digite o nome do projeto" 
+                 formControlName="nome" 
+                 (blur)="updateErrorMessage()"
+                 required                 >
+                 <mat-error *ngIf="form.get('nome')?.invalid">{{errorMessage}}</mat-error>
+          <!--<mat-error *ngIf="form.get('nome')?.invalid">O campo é obrigatório</mat-error>          
+          <mat-error *ngIf="form.get('nome')?.hasError('minlength')">O nome deve ter no mínimo 3 caracteres</mat-error>
+          <mat-error *ngIf="form.get('nome')?.hasError('maxlength')">O nome deve ter no máximo 10 caracteres</mat-error>-->
         </mat-form-field>
-        <mat-form-field appearance="outline">
+      </p>
+        <!--<mat-form-field appearance="outline">
           <mat-label>Descrição do Projeto</mat-label>
           <textarea matInput placeholder="Digite a descrição do projeto" formControlName="descricao"></textarea>
-        </mat-form-field>
-        <mat-dialog-actions>
+        </mat-form-field>-->
+        <mat-dialog-actions align="end">          
+          <button mat-button (click)="fecharModal()" type="reset">Fechar</button>
           <button mat-raised-button color="primary" type="submit">Adicionar</button>
-          <button mat-button (click)="fecharModal()">Fechar</button>
         </mat-dialog-actions>
       </form>
     </mat-dialog-content>
