@@ -1,8 +1,11 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ProjetoService } from 'src/app/services/projeto.service';
 import { Projeto } from '../projeto';
 import { MatDialog } from '@angular/material/dialog';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -10,25 +13,22 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   templateUrl: './menu-projetos.component.html',
   styleUrls: ['./menu-projetos.component.scss']
 })
-export class MenuProjetosComponent {
-adicionarCampo(_t42: NgForm) {
-throw new Error('Method not implemented.');
-}
+export class MenuProjetosComponent {  
 
-
+  //@Input() align: 'start' | 'center' | 'end' = 'center';
   @ViewChild('modalContent') modalContent!: TemplateRef<any>;
 
   form!: FormGroup;
   submitted = false;  
-
+  public projeto!: Projeto[];
   panelOpenState = false;  
 
-  constructor(private _projetoService: ProjetoService, public dialog: MatDialog, private fb: FormBuilder, ){ }
-  public projeto!: Projeto[];
+  constructor(private _projetoService: ProjetoService, public dialog: MatDialog, private fb: FormBuilder, private snackbarService: SnackbarService){ }
+  
 
   ngOnInit(){
     this.form = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       descricao: ['']      
     });
 
@@ -54,9 +54,6 @@ throw new Error('Method not implemented.');
     }
     
 
-
-    
-
     adicionarProjeto(): void {
       if (this.form.valid) {
         const novoProjeto: Projeto = this.form.value;
@@ -65,9 +62,11 @@ throw new Error('Method not implemented.');
             console.log('Projeto adicionado com sucesso:', resposta);
             this.fecharModal();
             this.carregarProjetos();
+            this.showMessage('Projeto adicionado com sucesso!');
           },
           (erro) => {
             console.error('Erro ao adicionar projeto:', erro);
+            this.showMessage('Erro ao adicionar projeto. Por favor, tente novamente.');
           }
         );        
       }
@@ -75,18 +74,33 @@ throw new Error('Method not implemented.');
 
     openModal(): void {
       const dialogRef = this.dialog.open(this.modalContent, {
-        width: '250px' // Largura da modal
+        height: '250',
+        width: '400px',
+         // Largura da modal
       });
     }
   
     fecharModal(): void {
       this.dialog.closeAll();
     }
-  
+    showMessage(message: string): void {
+      this.snackbarService.openSnackbar(message);
+    }  
+
+    errorMessage = '';
+
+    updateErrorMessage() {
+      if (this.form.get('nome')?.hasError('required')) {
+        this.errorMessage = 'Você deve entrar com um valor válido';
+      } else if (this.form.get('nome')?.hasError('maxlength')) {
+        this.errorMessage = 'campo maximo 10 caracteres';
+      } else if (this.form.get('nome')?.hasError('minlength')) {
+        this.errorMessage = 'campo deve conter no minimo 10 caracteres';
+      } else {
+        this.errorMessage = '';
+      }
+    }
 }
 
 
-function carregarProjetos() {
-  throw new Error('Function not implemented.');
-}
 

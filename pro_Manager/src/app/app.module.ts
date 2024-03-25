@@ -15,13 +15,16 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuProjetosComponent
+    MenuProjetosComponent,
+    SnackbarComponent
     
   ],
   imports: [
@@ -37,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatDialogModule,    
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
     
   ],
   providers: [],
