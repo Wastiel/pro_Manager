@@ -82,3 +82,6 @@ export class MenuProjetosComponent implements OnInit{
       )
     }
 }
+
+
+"@angular/material/prebuilt-themes/indigo-pink.css"
