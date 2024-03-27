@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+//import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 
 
@@ -24,25 +24,25 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
   declarations: [
     AppComponent,
     MenuProjetosComponent,
-    SnackbarComponent
-    
+  //  SnackbarComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatCardModule, 
-    MatButtonModule, 
+    MatCardModule,
+    MatButtonModule,
     MatListModule,
     MatIconModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDialogModule,    
+    MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatSnackBarModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
