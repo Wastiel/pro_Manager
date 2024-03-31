@@ -1,0 +1,40 @@
+/* styles.css ou styles.scss */
+.toolbar {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+}
+
+.form-field-wrapper {
+
+  align-items: center; /* Centraliza os campos dentro da div */
+  margin-left: auto; /* Empurra os campos para a direita */
+}
+
+.form-field {
+  margin-right: 10px; /* Adiciona um espaçamento entre os campos */
+}
+
+.white-background .mat-form-field-underline {
+  background-color: white; /* Define um fundo branco para o campo input */
+}
+
+/* styles.css ou styles.scss */
+.mat-form-field {
+  width: 150px; /* Define a largura desejada para o campo de entrada */
+}
+
+.mat-select {
+  min-width: 150px; /* Define a largura mínima para o campo de seleção */
+}
+
+table {
+  width: 100%;
+}
+
+.loading-spinner {
+  padding: 25px;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

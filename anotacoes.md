@@ -87,3 +87,39 @@ export class MenuProjetosComponent implements OnInit{
 "@angular/material/prebuilt-themes/indigo-pink.css"
 
 - Vou criar um componente modal. 
+
+- Criado o componente projeto
+- Criado o modulo das atividades com rotas
+	ng g m atividade --routing
+- Criado a model da atividade
+	- atividade.js
+- Criado a menu-atividade
+ng g c atividade/menu-atividade
+- criado a shared para colocar o snackbar
+	- ng g m shared
+configuramos a model da atividade
+	````ts		
+		@NgModule({
+		declarations: [
+			MenuAtividadeComponent
+		],
+		imports: [
+			CommonModule,
+			AtividadeRoutingModule,
+			AppModule, 
+			AppRoutingModule
+		]
+		})
+		export class AtividadeModule { }
+
+	````
+- Criamos a rota por parte do model da atividade
+- Ajustamos a rota por parte da rota principal 
+	````ts
+		const routes: Routes = [
+		{path: '', pathMatch: 'full', redirectTo: 'menu-atividades'},
+		{path: 'atividades',
+			loadChildren: () => import('./atividade/atividade.module').then(m =>m.AtividadeModule)}
+		];
+	````
+- Vamos crar um componente para o carregamento da tabela. 
