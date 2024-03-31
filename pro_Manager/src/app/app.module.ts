@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ModalProjetoComponent } from './projeto/modal-projeto/modal-projeto.component';
 //import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 
@@ -24,6 +25,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   declarations: [
     AppComponent,
     MenuProjetosComponent,
+    ModalProjetoComponent,
   //  SnackbarComponent
 
   ],

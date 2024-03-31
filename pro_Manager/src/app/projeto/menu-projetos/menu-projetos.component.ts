@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ModalProjetoComponent } from '../modal-projeto/modal-projeto.component';
 
 
 
@@ -13,25 +14,24 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   templateUrl: './menu-projetos.component.html',
   styleUrls: ['./menu-projetos.component.scss']
 })
-export class MenuProjetosComponent {  
+export class MenuProjetosComponent {
 
   //@Input() align: 'start' | 'center' | 'end' = 'center';
-  @ViewChild('modalContent') modalContent!: TemplateRef<any>;
 
   form!: FormGroup;
-  submitted = false;  
+  submitted = false;
   public projeto!: Projeto[];
-  panelOpenState = false;  
+  panelOpenState = false;
+
 
   constructor(private _projetoService: ProjetoService, public dialog: MatDialog, private fb: FormBuilder, private snackbarService: SnackbarService){ }
-  
+
 
   ngOnInit(){
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-      descricao: ['']      
+      descricao: ['']
     });
-
     this.carregarProjetos();
   }
 
@@ -52,54 +52,20 @@ export class MenuProjetosComponent {
         }
       );
     }
-    
 
-    adicionarProjeto(): void {
-      if (this.form.valid) {
-        const novoProjeto: Projeto = this.form.value;
-        this._projetoService.setProjeto(novoProjeto).subscribe(
-          (resposta) => {
-            console.log('Projeto adicionado com sucesso:', resposta);
-            this.fecharModal();
-            this.carregarProjetos();
-            this.showMessage('Projeto adicionado com sucesso!');
-          },
-          (erro) => {
-            console.error('Erro ao adicionar projeto:', erro);
-            this.showMessage('Erro ao adicionar projeto. Por favor, tente novamente.');
-          }
-        );        
-      }
-    }
+
 
     openModal(): void {
-      const dialogRef = this.dialog.open(this.modalContent, {
-        height: '250',
-        width: '400px',
-         // Largura da modal
+      const dialogRef = this.dialog.open(ModalProjetoComponent, {
+        height: '250px',
+        width: '400px'
+      });
+
+      dialogRef.componentInstance.modalClosed.subscribe(() => {
+        this.carregarProjetos(); // Recarregar os projetos após o fechamento do modal
       });
     }
-  
-    fecharModal(): void {
-      this.dialog.closeAll();
-    }
-    showMessage(message: string): void {
-      this.snackbarService.openSnackbar(message);
-    }  
 
-    errorMessage = '';
-
-    updateErrorMessage() {
-      if (this.form.get('nome')?.hasError('required')) {
-        this.errorMessage = 'Você deve entrar com um valor válido';
-      } else if (this.form.get('nome')?.hasError('maxlength')) {
-        this.errorMessage = 'campo maximo 10 caracteres';
-      } else if (this.form.get('nome')?.hasError('minlength')) {
-        this.errorMessage = 'campo deve conter no minimo 10 caracteres';
-      } else {
-        this.errorMessage = '';
-      }
-    }
 }
 
 

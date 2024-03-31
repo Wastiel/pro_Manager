@@ -19,6 +19,12 @@ export class SnackbarService {
     });
   }
 
+  openSnackbardown(message: string): void {
+    this.snackBar.open(message, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
+  }
   //getMessage(): Observable<string> {
   //  return this.messageSubject.asObservable();
  // }

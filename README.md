@@ -1,5 +1,5 @@
 # pro_Manager
-Gerenciador de projetos e atividades para um trabalho de mentoria angular.
+    Gerenciador de projetos e atividades para um trabalho de mentoria angular.
 
 ## A ideia deste projeto:
     É colocar em prática todos os aprendizados de uma mentoria em angular.
